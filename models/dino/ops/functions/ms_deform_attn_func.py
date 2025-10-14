@@ -41,7 +41,7 @@ class MSDeformAttnFunction(Function):
         return grad_value, None, None, grad_sampling_loc, grad_attn_weight, None
 
 
-def ms_deform_attn_core_pytorch(value, value_spatial_shapes, sampling_locations):
+def ms_deform_attn_core_pytorch(value, value_spatial_shapes, sampling_locations, attention_weights):
     # for debug and test only,
     # need to use cuda version instead
     N_, S_, M_, D_ = value.shape
@@ -59,10 +59,9 @@ def ms_deform_attn_core_pytorch(value, value_spatial_shapes, sampling_locations)
                                           mode='bilinear', padding_mode='zeros', align_corners=False)
         sampling_value_list.append(sampling_value_l_)
     # (N_, Lq_, M_, L_, P_) -> (N_, M_, Lq_, L_, P_) -> (N_, M_, 1, Lq_, L_*P_)
-    # attention_weights = attention_weights.transpose(1, 2).reshape(N_*M_, 1, Lq_, L_*P_)
-    # output = (torch.stack(sampling_value_list, dim=-2).flatten(-2) * attention_weights).sum(-1).view(N_, M_*D_, Lq_)
-    # return output.transpose(1, 2).contiguous()
-    return torch.cat(sampling_value_list, dim=-1).permute(2,-1,0,1)
+    attention_weights = attention_weights.transpose(1, 2).reshape(N_*M_, 1, Lq_, L_*P_)
+    output = (torch.stack(sampling_value_list, dim=-2).flatten(-2) * attention_weights).sum(-1).view(N_, M_*D_, Lq_)
+    return output.transpose(1, 2).contiguous()
 
 
 def ms_deform_attn_core_pytorch_key_aware(
