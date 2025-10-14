@@ -26,8 +26,8 @@ class TimeTrackQIM(QueryInteractionDefault):
         super().__init__(args, dim_in, hidden_dim, dim_out)
         self.momentum = 0.9
         self.fp_history_ratio = self.args.fp_history_ratio
-        self.det_thr = self.args.det_thr
-        self.track_thr = self.args.track_thr
+        self.det_thr = self.args.score
+        self.track_thr = self.args.score
 
     def _add_fp_history(self, active_track_instances: Instances) -> Instances:
         if len(active_track_instances) <= 1:
