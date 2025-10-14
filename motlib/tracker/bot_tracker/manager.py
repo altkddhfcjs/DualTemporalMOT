@@ -4,7 +4,7 @@ from motlib.utils import to_cpu
 import torch
 import torchvision
 from pathlib import Path
-from motlib.tracker import TRACKER_REGISTRY
+# from motlib.tracker import TRACKER_REGISTRY
 from motlib.tracker.byte_tracker.manager import write_results
 
 
