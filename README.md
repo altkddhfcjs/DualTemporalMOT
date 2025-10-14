@@ -1,5 +1,5 @@
 # DualTemporalMOT
-# [NeurIPS 2025] Dual-Path Temporal Decoder for End-to-End Multi-Object Tracking
+### [NeurIPS 2025] Dual-Path Temporal Decoder for End-to-End Multi-Object Tracking
 #### We propose a dual-path temporal decoder that explicitly separates appearance adaptation and identity preservation. The appearance-adaptive decoder dynamically updates query features using current frame information, while the identity-preserving decoder freezes query features and reuses historical sampling offsets to maintain long-term temporal consistency.
 
 <p align="center"><img src="Figures/model_overview.png" width="700"/></p>
