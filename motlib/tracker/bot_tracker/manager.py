@@ -8,7 +8,7 @@ from pathlib import Path
 # from motlib.tracker.byte_tracker.manager import write_results
 
 
-@TRACKER_REGISTRY.register()
+# @TRACKER_REGISTRY.register()
 class BotTracker(object):
     def __init__(self, args, videos_info, result_folder) -> None:
         self.args = args
