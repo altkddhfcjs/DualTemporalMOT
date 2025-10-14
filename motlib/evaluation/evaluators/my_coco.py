@@ -22,7 +22,7 @@ from motlib.evaluation.evaluate_metrics import mot_eval_metrics
 from motlib.utils import torch_distributed_zero_first, set_dir, load_dino_results, time_synchronized
 from motlib.evaluation.utils.result_process import filter_result
 # from motlib.tracker.interpolation import dti as iptrack
-from motlib.tracker.interpolation import GSInterpolation as iptrack
+# from motlib.tracker.interpolation import GSInterpolation as iptrack
 
 
 __all__ = ['my_evaluate_coco']
