@@ -21,7 +21,7 @@ from motlib.evaluation.evaluate_metrics import mot_eval_metrics
 from motlib.utils import set_dir, time_synchronized
 from motlib.evaluation.utils.result_process import filter_result
 from motlib.mot_models.network.dino_mot.tracker.manager import E2ETrackManager
-from motlib.tracker.interpolation import GSInterpolation as iptrack
+# from motlib.tracker.interpolation import GSInterpolation as iptrack
 import pickle
 __all__ = ['evaluate_e2e']
 
