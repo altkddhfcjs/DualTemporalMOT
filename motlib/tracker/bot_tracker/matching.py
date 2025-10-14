@@ -5,7 +5,7 @@ from scipy.spatial.distance import cdist
 
 from cython_bbox import bbox_overlaps as bbox_ious
 from . import kalman_filter
-from motlib.tracker.byte_tracker.matching import iou_distance, embedding_distance
+# from motlib.tracker.byte_tracker.matching import iou_distance, embedding_distance
 
 
 def merge_matches(m1, m2, shape):
