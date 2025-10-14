@@ -17,7 +17,7 @@ from pathlib import Path
 import util.misc as utils
 import torch.distributed as dist
 from motlib.evaluation.evaluate_metrics.cocoeval import CocoEvaluator
-from motlib.tracker.offline_track import track_by_offline
+# from motlib.tracker.offline_track import track_by_offline
 from motlib.evaluation.evaluate_metrics import mot_eval_metrics
 from motlib.utils import torch_distributed_zero_first, set_dir, load_dino_results, time_synchronized
 from motlib.evaluation.utils.result_process import filter_result
