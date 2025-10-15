@@ -21,8 +21,7 @@ from motlib.evaluation.evaluate_metrics import mot_eval_metrics
 from motlib.utils import set_dir, time_synchronized
 from motlib.evaluation.utils.result_process import filter_result
 from motlib.mot_models.network.dino_mot.tracker.manager import E2ETrackManager
-# from motlib.tracker.interpolation import GSInterpolation as iptrack
-import pickle
+
 __all__ = ['evaluate_e2e']
 
 
@@ -73,33 +72,11 @@ def evaluate_e2e(model, criterion, postprocessors, data_loader, base_ds, device,
     n_samples = 0
     warmup_iter = min(100, len(data_loader) // 3)
 
-    # video_information = data_loader.dataset.coco.videoToImgs
-    # video_seq_info = {video_information[i][0]['video_id']: video_information[i][0]['file_name'].split("/")[4] for i in
-    #                   video_information}
-    # video_dict = {video_information[i][0]['video_id']: len(video_information[i]) for i in video_information}
-    # previous_track_instances = None
-    # current_video_id = -1
 
     for cur_iter, (samples, targets) in enumerate(metric_logger.log_every(data_loader, 10, header, logger=logger)):
-        # if cur_iter == 0:
-        #     video_pred_dict = {}
+
         samples = samples.to(device)
-        # targets = [{k: to_device(v, device) for k, v in t.items()} for t in targets]
-        # video_id = int(targets[0]['video_id'])
-        # frame_id = int(targets[0]['frame_id'])
-        # if current_video_id != -1 and current_video_id != video_id:
-        #     save_path = "/home/cvlab09/MOT/juheon/nas/250608/exp_max/not_query/" + f"{video_name}.pkl"
-        #     with open(save_path, 'wb') as f:
-        #         pickle.dump(video_pred_dict[video_name], f)
-        #     torch.cuda.empty_cache()
-        # if current_video_id != video_id:
-        #     current_video_id = video_id
-        #     track_mannager.valid_frame_num = video_dict[video_id]
-        #     track_mannager.num = 0
-        # video_name = video_information[video_id][0]['file_name'].split('/')[4]
-        #
-        # if video_name not in video_pred_dict:
-        #     video_pred_dict[video_name] = {}
+ 
         is_time_record = (cur_iter < len(data_loader) - 1) and cur_iter > warmup_iter
         if is_time_record:
             n_samples += len(targets)
